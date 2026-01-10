@@ -47,7 +47,6 @@ set_target_properties(appCalculator PROPERTIES
 
 target_link_libraries(appCalculator
     PRIVATE Qt6::Quick
-    PUBLIC libCalculatorView
 )
 
 include(GNUInstallDirs)
