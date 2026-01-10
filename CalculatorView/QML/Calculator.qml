@@ -15,6 +15,19 @@ Item {
         validator: CalculatorInputValidator { id: validator }
 
         text: "0"
+
+        Keys.onPressed: function (event) {
+            if (event.key === Qt.Key_Backspace) {
+                floatingNumberInput.text = validator.removeSymbol(floatingNumberInput.text)
+            }
+            else {
+                floatingNumberInput.text = validator.appendSymbol(floatingNumberInput.text, event.text[0])
+            }
+
+            event.accepted = true
+
+            errorLabel.text = ''
+        }
     }
 
     Text {
