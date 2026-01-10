@@ -69,6 +69,10 @@ FixedPointErrorCode parseFixedPointValue(const char* string, int size, FixedPoin
         if (pointIndex == size - 1) { // 111.?
             return FixedPointErrorCode::INVALID_ARGUMENT;
         }
+
+        if (pointIndex == 0) {
+            return FixedPointErrorCode::INVALID_ARGUMENT;
+        }
     }
     else {
         if (size > 24) {
