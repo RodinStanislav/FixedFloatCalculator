@@ -2,12 +2,32 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 
+#include <QFile>
+#include <QFont>
+#include <QFontDatabase>
+
 #include "CalculatorBackend.h"
 #include "CalculatorView/CalculatorInputValidator.h"
 
 int main(int argc, char *argv[]) {
   QGuiApplication app(argc, argv);
   QQmlApplicationEngine engine;
+
+  if (app.font().defaultFamily().isEmpty()) {
+    QFile fontFile(":/Resources/Fonts/DejaVuSans.ttf");
+    assert(fontFile.exists());
+    assert(fontFile.open(QIODevice::ReadOnly));
+    QByteArray fileContent = fontFile.readAll();
+    fontFile.close();
+
+    QFontDatabase::addApplicationFontFromData(fileContent);
+
+    auto fontFamilies = QFontDatabase::families();
+    assert(!fontFamilies.isEmpty());
+
+    QFont defaultFont("DejaVuSans", 12);
+    app.setFont(defaultFont);
+  }
 
   CalculatorBackend calculatorBackend;
 

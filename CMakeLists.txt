@@ -32,7 +32,13 @@ qt_add_qml_module(appCalculator
             CalculatorView/CalculatorInputValidator.cpp
             CalculatorView/ICalculatorBackend.h
             CalculatorView/ICalculatorBackend.cpp
+            
+    RESOURCES Resources/Fonts/DejaVuSans.ttf
 )
+
+qt_add_resources(appCalculator "CalculatorViewFonts"
+    PREFIX "/"
+    FILES Resources/Fonts/DejaVuSans.ttf)
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
